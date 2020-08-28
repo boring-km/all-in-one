@@ -1,1 +1,19 @@
 rootProject.name = 'allinone'
+
+/* all-in-one-application*/
+
+
+/* all-in-one-core*/
+include 'aio-core:user-core'
+include 'aio-core:product-core'
+include 'aio-core:basket-core'
+include 'aio-core:share-core'
+
+/* all-in-one-infra*/
+include 'aio-infra:auth-service'
+
+
+/* all-in-one-util*/
+include 'aio-common:api'
+include 'aio-common:util'
+
