@@ -1,0 +1,55 @@
+package com.aio.allinone.vehicle;
+
+import com.aio.allinone.money.Won;
+import com.aio.allinone.price.PayTimeType;
+import com.aio.allinone.price.PricePolicy;
+import com.aio.allinone.product.ProductInfo;
+import com.aio.allinone.product.RentalPeriod;
+import com.aio.allinone.product.StatusType;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class VehicleProductTest {
+    private VehicleProduct vehicleProduct;
+    private PricePolicy oneHourPolicy;
+
+    @BeforeEach
+    public void 초기화() {
+
+        vehicleProduct = VehicleProduct.builder()
+                .productInfo(ProductInfo.builder()
+                        .productId("자동생성되는 ID")
+                        .sellerId("kmjin")
+                        .title("포터 대여합니다")
+                        .address("서울시 동작구")
+                        .pricePolicy(PricePolicy.builder()
+                                .payTimeType(PayTimeType.PAY_PER_1_HOUR)
+                                .price(new Won(5000L)).build())
+                        .detail("자동차 파손 시 수수료 있음")
+                        .rentalPeriod(
+                                new RentalPeriod[]{RentalPeriod.builder()
+                                .from(LocalDateTime.now())
+                                .to(LocalDateTime.of(2020,11,30,22,0)).build()})
+                        .statusType(StatusType.POSSIBLE)
+                        .pictureURLArray(new String[]{"PictureUrl1", "PictureUrl2"})
+                        .build())
+                .number("서울 12345")
+                .vehicleType("트럭")
+                .build();
+        oneHourPolicy = PricePolicy.builder()
+                .payTimeType(PayTimeType.PAY_PER_1_HOUR)
+                .price(new Won(5000L)).build();
+
+    }
+
+    @Test
+    public void vehicleProduct의_제품정보에서_가격정책을_가져오면_1시간에_5000원인_가격정책과_같다() {
+        assertThat(vehicleProduct.getProductInfo().getPricePolicy())
+                .isEqualTo(oneHourPolicy);
+    }
+
+}
