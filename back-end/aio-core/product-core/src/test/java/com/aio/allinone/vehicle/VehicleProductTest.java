@@ -8,12 +8,18 @@ import com.aio.allinone.product.RentalPeriod;
 import com.aio.allinone.product.StatusType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
 public class VehicleProductTest {
+
+    @Autowired
+    private VehicleMongoRepository vehicleMongoRepository;
     private VehicleProduct vehicleProduct;
     private PricePolicy oneHourPolicy;
 
@@ -44,6 +50,21 @@ public class VehicleProductTest {
                 .payTimeType(PayTimeType.PAY_PER_1_HOUR)
                 .price(new Won(5000L)).build();
 
+    }
+
+    @Test
+    void insertTestVehicle() {
+        vehicleMongoRepository.insert(vehicleProduct);
+    }
+
+    @Test
+    void printTestVehicle() {
+        System.out.println(vehicleMongoRepository.findAll().get(0).toString());
+    }
+
+    @Test
+    void 테스트_차량_제품의_차량_타입은_트럭이다() {
+        assertThat(vehicleMongoRepository.findAll().get(0).getVehicleType()).isEqualTo("트럭");
     }
 
     @Test

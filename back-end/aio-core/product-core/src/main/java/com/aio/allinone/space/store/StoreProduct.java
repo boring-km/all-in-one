@@ -2,12 +2,11 @@ package com.aio.allinone.space.store;
 
 import com.aio.allinone.product.ProductInfo;
 import com.aio.allinone.space.RoomSize;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Builder
 @Document(collection = "StoreProduct")

@@ -1,12 +1,11 @@
 package com.aio.allinone.vehicle;
 
 import com.aio.allinone.product.ProductInfo;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Builder
 @Document(collection = "VehicleProduct")

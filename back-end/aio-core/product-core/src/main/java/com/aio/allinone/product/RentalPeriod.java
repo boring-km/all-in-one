@@ -1,11 +1,12 @@
 package com.aio.allinone.product;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Builder
 public class RentalPeriod {
     private LocalDateTime from;
