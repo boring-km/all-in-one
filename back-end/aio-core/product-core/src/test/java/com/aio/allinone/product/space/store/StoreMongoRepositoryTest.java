@@ -1,5 +1,6 @@
-package com.aio.allinone.space.store;
+package com.aio.allinone.product.space.store;
 
+import com.aio.allinone.product.space.store.StoreMongoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

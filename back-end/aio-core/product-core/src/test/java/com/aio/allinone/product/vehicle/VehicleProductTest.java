@@ -1,4 +1,4 @@
-package com.aio.allinone.vehicle;
+package com.aio.allinone.product.vehicle;
 
 import com.aio.allinone.money.Won;
 import com.aio.allinone.price.PayTimeType;
@@ -6,6 +6,8 @@ import com.aio.allinone.price.PricePolicy;
 import com.aio.allinone.product.ProductInfo;
 import com.aio.allinone.product.RentalPeriod;
 import com.aio.allinone.product.StatusType;
+import com.aio.allinone.product.vehicle.VehicleMongoRepository;
+import com.aio.allinone.product.vehicle.VehicleProduct;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,6 @@ public class VehicleProductTest {
 
         vehicleProduct = VehicleProduct.builder()
                 .productInfo(ProductInfo.builder()
-                        .productId("자동생성되는 ID")
                         .sellerId("kmjin")
                         .title("포터 대여합니다")
                         .address("서울시 동작구")

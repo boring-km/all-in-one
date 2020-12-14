@@ -1,4 +1,4 @@
-package com.aio.allinone.space.store;
+package com.aio.allinone.product.space.store;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

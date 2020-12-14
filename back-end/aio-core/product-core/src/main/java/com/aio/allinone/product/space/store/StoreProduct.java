@@ -1,7 +1,8 @@
-package com.aio.allinone.space.store;
+package com.aio.allinone.product.space.store;
 
+import com.aio.allinone.product.Product;
 import com.aio.allinone.product.ProductInfo;
-import com.aio.allinone.space.RoomSize;
+import com.aio.allinone.product.space.RoomSize;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Builder
 @Document(collection = "StoreProduct")
-public class StoreProduct {
+public class StoreProduct extends Product {
     private ProductInfo productInfo;
     private RoomSize storeSize;
 }

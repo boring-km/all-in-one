@@ -1,4 +1,4 @@
-package com.aio.allinone.space.house;
+package com.aio.allinone.product.space.house;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

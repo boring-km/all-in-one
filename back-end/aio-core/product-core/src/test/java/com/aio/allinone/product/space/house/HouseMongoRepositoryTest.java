@@ -1,5 +1,6 @@
-package com.aio.allinone.space.house;
+package com.aio.allinone.product.space.house;
 
+import com.aio.allinone.product.space.house.HouseMongoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

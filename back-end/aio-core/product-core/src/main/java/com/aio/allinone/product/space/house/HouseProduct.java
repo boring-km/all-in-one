@@ -1,19 +1,17 @@
-package com.aio.allinone.space.house;
+package com.aio.allinone.product.space.house;
 
+import com.aio.allinone.product.Product;
 import com.aio.allinone.product.ProductInfo;
-import com.aio.allinone.space.RoomSize;
+import com.aio.allinone.product.space.RoomSize;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Builder
 @Document(collection = "HouseProduct")
-public class HouseProduct {
+public class HouseProduct extends Product {
     private ProductInfo productInfo;
     private RoomSize houseSize;
 }

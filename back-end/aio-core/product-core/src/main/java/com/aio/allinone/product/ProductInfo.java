@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class ProductInfo {
-
-    private String productId;
     private String sellerId;
     private String title;
     private String address;

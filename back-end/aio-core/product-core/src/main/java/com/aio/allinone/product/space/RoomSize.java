@@ -1,4 +1,4 @@
-package com.aio.allinone.space;
+package com.aio.allinone.product.space;
 
 import lombok.*;
 
