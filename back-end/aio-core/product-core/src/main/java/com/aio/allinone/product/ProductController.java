@@ -22,7 +22,7 @@ public class ProductController {
 
     @GetMapping("/{product}/{sellerId}")
     public List<?> findProductBy(@PathVariable String product, @PathVariable String sellerId) {
-        Query query = new Query(Criteria.where("sellerId").is(sellerId));
+        Query query = new Query(Criteria.where("productInfo.sellerId").is(sellerId));
         return mongoTemplate.find(query, Objects.requireNonNull(ProductType.findProduct(product)));
     }
 

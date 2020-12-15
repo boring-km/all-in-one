@@ -7,7 +7,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductTypeTest {
     @Test
-    void productTest() {
-        assertThat(ProductType.findProduct("HouseProduct")).isEqualTo(HouseProduct.class);
+    void findProductTest() {
+        assertThat(ProductType.findProduct("house")).isEqualTo(HouseProduct.class);
     }
+
 }
