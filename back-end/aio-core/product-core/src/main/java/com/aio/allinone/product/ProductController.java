@@ -1,33 +1,34 @@
 package com.aio.allinone.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 public class ProductController {
 // TODO: 제대로 작동하는지 확인 필요
+
     @Autowired
-    private MongoTemplate mongoTemplate;
+    private ProductService productService;
 
     @GetMapping("/{product}")
     public List<?> getProductList(@PathVariable String product) {
-        return mongoTemplate.findAll(Objects.requireNonNull(ProductType.findProduct(product)));
+        return productService.getProductList(product);
     }
 
     @GetMapping("/{product}/{sellerId}")
     public List<?> findProductBy(@PathVariable String product, @PathVariable String sellerId) {
-        Query query = new Query(Criteria.where("productInfo.sellerId").is(sellerId));
-        return mongoTemplate.find(query, Objects.requireNonNull(ProductType.findProduct(product)));
+        return productService.findProductBy(product, sellerId);
     }
 
-    @PostMapping("/register/{product}")
+    @PostMapping("/{product}/register")
     public Product registerProduct(@PathVariable String product, @RequestBody Product targetProduct) {
-        return mongoTemplate.insert(targetProduct, product);
+        return productService.registerProduct(product, targetProduct);
+    }
+
+    @PostMapping("/{product}/update")
+    public Product updateProduct(@PathVariable String product, @RequestBody Product targetProduct) {
+        return productService.updateProduct(product, targetProduct);
     }
 }

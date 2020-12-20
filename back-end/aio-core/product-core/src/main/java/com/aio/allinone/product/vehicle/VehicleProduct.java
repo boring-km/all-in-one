@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "VehicleProduct")
 public class VehicleProduct extends Product {
-
     private ProductInfo productInfo;
     private String number;
     private String vehicleType;
