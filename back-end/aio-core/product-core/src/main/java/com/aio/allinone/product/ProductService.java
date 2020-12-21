@@ -18,31 +18,33 @@ public class ProductService {
     private MongoTemplate mongoTemplate;
 
     public List<?> getProductList(String product) {
-        return mongoTemplate.findAll(Objects.requireNonNull(ProductType.findProduct(product)));
+        return mongoTemplate.findAll(Objects.requireNonNull(ProductType.findProduct(product).productClass));
     }
 
     public List<?> findProductBy(String product, String sellerId) {
         Query query = new Query(Criteria.where("productInfo.sellerId").is(sellerId));
-        return mongoTemplate.find(query, Objects.requireNonNull(ProductType.findProduct(product)));
+        return mongoTemplate.find(query, Objects.requireNonNull(ProductType.findProduct(product).productClass));
     }
 
-    public Product registerProduct(String product, Product targetProduct) {
-        return mongoTemplate.insert(targetProduct, product);
+    public Object registerProduct(String product, Object targetProduct) {
+        return mongoTemplate.insert(targetProduct, ProductType.findProduct(product).name());
     }
 
-    public Product updateProduct(String product, Product targetProduct) {
+    public Product updateProduct(String product, Object targetProduct) {
         Class<?> productClass = ProductType.valueOf(product).productClass;
-        Query query = new Query(Criteria.where("_id").is(targetProduct.get_id()));
-        Object beforeProduct = mongoTemplate.findById(targetProduct.get_id(), productClass);
-        JSONObject beforeObj = new JSONObject(Objects.requireNonNull(beforeProduct).toString());
-        JSONObject targetObj = new JSONObject(Objects.requireNonNull(targetProduct).toString());
+        Query query = new Query(Criteria.where("_id").is(((Product)targetProduct).get_id()));
+        JSONObject beforeObj = (Product) mongoTemplate.findById(((Product)targetProduct).get_id(), productClass);
+        JSONObject targetObj = new JSONObject(Objects.requireNonNull((Product)targetProduct).toString());
         Update update = new Update();
 
-        while (!beforeObj.isEmpty()) {
-            String key = String.valueOf(beforeObj.keys());
-            update.set(key, targetObj.get(key));
+        if (beforeObj != null) {
+            while (!beforeObj.isEmpty()) {
+                String key = String.valueOf(beforeObj.keys());
+                if (key.equals("_id")) continue;
+                update.set(key, targetObj.get(key));
+            }
         }
         mongoTemplate.updateMulti(query, update, productClass);
-        return (Product) mongoTemplate.findById(targetProduct.get_id(), productClass);
+        return (Product) mongoTemplate.findById(((Product)targetProduct).get_id(), productClass);
     }
 }

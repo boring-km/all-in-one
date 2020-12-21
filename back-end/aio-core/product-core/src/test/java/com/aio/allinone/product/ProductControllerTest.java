@@ -23,7 +23,7 @@ class ProductControllerTest {
 
     @Before
     void 컨트롤러_초기화() {
-        this.controller = new ProductController();
+        this.controller = new ProductController(new ProductService());
     }
 
     @Autowired
@@ -33,7 +33,7 @@ class ProductControllerTest {
     void findVehicleSellerId() {
         System.out.println(
                 ((VehicleProduct) mongoTemplate.findAll(
-                        Objects.requireNonNull(ProductType.findProduct("VehicleProduct")))
+                        Objects.requireNonNull(ProductType.findProduct("VehicleProduct").productClass))
                         .get(0)).getProductInfo().getSellerId());
     }
 
@@ -41,7 +41,7 @@ class ProductControllerTest {
     void findVehicleBySellerId() {
         String sellerId = "kmjin";
         Query query = new Query(Criteria.where("productInfo.sellerId").is(sellerId));
-        VehicleProduct vehicleProduct = (VehicleProduct) mongoTemplate.find(query, Objects.requireNonNull(ProductType.findProduct("VehicleProduct"))).get(0);
+        VehicleProduct vehicleProduct = (VehicleProduct) mongoTemplate.find(query, Objects.requireNonNull(ProductType.findProduct("VehicleProduct").productClass)).get(0);
         assertThat(vehicleProduct.getProductInfo().getSellerId()).isEqualTo(sellerId);
     }
 

@@ -5,17 +5,17 @@ import com.aio.allinone.product.space.store.StoreProduct;
 import com.aio.allinone.product.vehicle.VehicleProduct;
 
 public enum ProductType {
-    house(HouseProduct.class),
-    store(StoreProduct.class),
-    vehicle(VehicleProduct.class),
-    none(NoneProduct.class);
+    HouseProduct(HouseProduct.class),
+    StoreProduct(StoreProduct.class),
+    VehicleProduct(VehicleProduct.class),
+    NoneProduct(NoneProduct.class);
 
     Class<?> productClass;
     ProductType(Class<?> productClass) {
         this.productClass = productClass;
     }
 
-    public static Class<?> findProduct(String type) {
-        return ProductType.valueOf(type).productClass;
+    public static ProductType findProduct(String type) {
+        return ProductType.valueOf(type);
     }
 }
