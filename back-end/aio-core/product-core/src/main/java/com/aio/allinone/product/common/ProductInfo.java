@@ -1,4 +1,4 @@
-package com.aio.allinone.product;
+package com.aio.allinone.product.common;
 
 import com.aio.allinone.price.PricePolicy;
 import lombok.*;
