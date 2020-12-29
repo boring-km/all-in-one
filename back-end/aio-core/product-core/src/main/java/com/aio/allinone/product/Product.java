@@ -42,7 +42,3 @@ class VehicleProduct extends Product {
     private String vehicleType;
 
 }
-
-
-class NoneProduct extends Product {
-}
