@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
-public abstract class Product {}
+public abstract class Product {
+    private String _id;
+}
 
 @NoArgsConstructor
 @AllArgsConstructor
