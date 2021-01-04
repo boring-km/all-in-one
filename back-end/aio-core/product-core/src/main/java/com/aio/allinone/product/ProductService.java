@@ -1,5 +1,6 @@
 package com.aio.allinone.product;
 
+import com.aio.allinone.product.common.StatusType;
 import org.json.JSONObject;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -70,10 +71,23 @@ public class ProductService {
 
     public Object deleteProduct(String product, String id) {
         JSONObject result = new JSONObject();
-
         try {
             Query query = new Query(Criteria.where("_id").is(id));
             mongoTemplate.remove(query, product);
+            result.put("result", "success");
+        } catch (Exception e) {
+            result.put("error", e.getMessage());
+        }
+        return result.toString();
+    }
+
+    public Object finishProduct(String product, String id) {
+        JSONObject result = new JSONObject();
+        try {
+            Query query = new Query(Criteria.where("_id").is(id));
+            Update update = new Update();
+            update.set("productInfo.statusType", StatusType.IMPOSSIBLE);
+            mongoTemplate.updateFirst(query, update, product);
             result.put("result", "success");
         } catch (Exception e) {
             result.put("error", e.getMessage());

@@ -33,6 +33,11 @@ public class ProductController {
         return productService.updateProduct(targetProduct);
     }
 
+    @PatchMapping("/product/finish/{product}/{id}")
+    public Object finishProduct(@PathVariable String product, @PathVariable String id) {
+        return productService.finishProduct(product, id);
+    }
+
     @DeleteMapping("/product/delete/{product}/{id}")
     public Object deleteProduct(@PathVariable String product, @PathVariable String id) {
         return productService.deleteProduct(product, id);
