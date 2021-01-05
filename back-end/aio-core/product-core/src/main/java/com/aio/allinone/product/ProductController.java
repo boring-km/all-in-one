@@ -14,32 +14,32 @@ public class ProductController {
     }
 
     @GetMapping("/product/{product}")
-    public Object getProductList(@PathVariable String product) {
+    public ProductResponse getProductList(@PathVariable String product) {
         return productService.getProductList(product);
     }
 
     @GetMapping("/product/{product}/{sellerId}")
-    public Object findProductBy(@PathVariable String product, @PathVariable String sellerId) {
+    public ProductResponse findProductBy(@PathVariable String product, @PathVariable String sellerId) {
         return productService.findProductBy(product, sellerId);
     }
 
     @PutMapping("/product/register")
-    public Object registerProduct(@RequestBody LinkedHashMap<String, Object>  targetProduct) {
+    public ProductResponse registerProduct(@RequestBody LinkedHashMap<String, Object>  targetProduct) {
         return productService.registerProduct(targetProduct);
     }
 
     @PatchMapping("/product/update")
-    public Object updateProduct(@RequestBody LinkedHashMap<String, Object> targetProduct) {
+    public ProductResponse updateProduct(@RequestBody LinkedHashMap<String, Object> targetProduct) {
         return productService.updateProduct(targetProduct);
     }
 
     @PatchMapping("/product/finish/{product}/{id}")
-    public Object finishProduct(@PathVariable String product, @PathVariable String id) {
+    public ProductResponse finishProduct(@PathVariable String product, @PathVariable String id) {
         return productService.finishProduct(product, id);
     }
 
     @DeleteMapping("/product/delete/{product}/{id}")
-    public Object deleteProduct(@PathVariable String product, @PathVariable String id) {
+    public ProductResponse deleteProduct(@PathVariable String product, @PathVariable String id) {
         return productService.deleteProduct(product, id);
     }
 }
