@@ -7,8 +7,8 @@ Vue.use(Router)
 export default new Router({
     routes: [
         {
-            path: '/product',
-            name: 'product',
+            path: '/',
+            name: 'Product',
             component: Product
         },
     ]
