@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-    <header>
-      <span>Product List</span>
-    </header>
-    <main>
-      <router-view></router-view>
-    </main>
+    <router-view name="header" />
+    <div class="wrapper">
+      <router-view />
+    </div>
+    <router-view name="footer" />
   </div>
 </template>
-
 <script>
-export default {
-  name: 'app'
-}
+export default {};
 </script>
