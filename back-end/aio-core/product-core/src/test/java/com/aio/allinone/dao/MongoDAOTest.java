@@ -4,14 +4,12 @@ import com.aio.allinone.product.VehicleProduct;
 import com.aio.allinone.product.common.ProductInfo;
 import com.aio.allinone.query.QueryBuilder;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
 class MongoDAOTest {
@@ -38,6 +36,6 @@ class MongoDAOTest {
                 .vehicleType("트럭")
                 .build();
         predict.set_id("5fe045015c3a4865f72b7949");
-        assertEquals(answer, predict);
+        assertThat(answer).isEqualTo(predict);
     }
 }
