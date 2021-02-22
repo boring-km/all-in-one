@@ -27,6 +27,11 @@ public class ProductService {
         errors = new ArrayList<>();
     }
 
+    /**
+     * 해당 제품군에 속하는 리스트를 반환
+     *
+     * @param product 제품 구분
+     */
     public ProductResponse getProductList(String product) {
         try {
             Class<?> productClass = Class.forName(productPackageName + product);
@@ -38,6 +43,12 @@ public class ProductService {
         return ProductAdapter.getResponse(result, errors);
     }
 
+    /**
+     * 해당 판매자의 제품정보 반환
+     *
+     * @param product 제품 구분
+     * @param sellerId 판매자 ID
+     */
     public ProductResponse findProductBy(String product, String sellerId) {
         try {
             Query query = new Query(Criteria.where("productInfo.sellerId").is(sellerId));
@@ -49,6 +60,11 @@ public class ProductService {
         return ProductAdapter.getResponse(result, errors);
     }
 
+    /**
+     * 제품 정보를 등록한다.
+     *
+     * @param targetProduct 등록할 제품 정보
+     */
     public ProductResponse registerProduct(LinkedHashMap<String, Object> targetProduct) {
         try {
             String product = targetProduct.get("type").toString();
@@ -61,6 +77,11 @@ public class ProductService {
         return ProductAdapter.getResponse(result, errors);
     }
 
+    /**
+     * 제품 정보를 수정한다.
+     *
+     * @param targetProduct 수정할 제품 정보
+     */
     public ProductResponse updateProduct(LinkedHashMap<String, Object> targetProduct) {
         try {
             String product = targetProduct.get("type").toString();
@@ -76,6 +97,12 @@ public class ProductService {
         return ProductAdapter.getResponse(result, errors);
     }
 
+    /**
+     * 해당 제품을 삭제한다.
+     *
+     * @param product 제품 구분
+     * @param id 제품 ID
+     */
     public ProductResponse deleteProduct(String product, String id) {
         try {
             Query query = new Query(Criteria.where("_id").is(id));
@@ -88,6 +115,12 @@ public class ProductService {
         return ProductAdapter.getResponse(result, errors);
     }
 
+    /**
+     * 해당 제품을 마감처리한다.
+     *
+     * @param product 제품 구분
+     * @param id 제품 ID
+     */
     public ProductResponse finishProduct(String product, String id) {
         try {
             Query query = new Query(Criteria.where("_id").is(id));
