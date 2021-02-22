@@ -1,7 +1,6 @@
 package com.aio.allinone.product;
 
 import com.aio.allinone.product.common.StatusType;
-import org.json.JSONObject;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
