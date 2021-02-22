@@ -19,7 +19,7 @@ public class ProductService {
 
     private final MongoTemplate mongoTemplate;
     private static final String productPackageName = "com.aio.allinone.product.";
-    private Object result = null;
+    private Object result = "NoneResult";
     private final List<String> errors;
 
     public ProductService(MongoTemplate mongoTemplate) {
