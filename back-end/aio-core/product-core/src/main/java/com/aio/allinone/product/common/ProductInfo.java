@@ -11,6 +11,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Builder
+@ToString
 public class ProductInfo {
     private String sellerId;
     private String title;

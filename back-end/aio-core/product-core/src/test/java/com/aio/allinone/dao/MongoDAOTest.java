@@ -19,10 +19,9 @@ class MongoDAOTest {
     @Autowired
     private MongoDAO dao;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Test
     void 자동차대여상품을_조회한_answer와_예상한_객체의_값_predict는_같다() {
+        Logger logger = LoggerFactory.getLogger(this.getClass());
         QueryBuilder qb = QueryBuilder.builder()
                 .where("productInfo.sellerId")
                 .is("kmjin")
@@ -40,7 +39,7 @@ class MongoDAOTest {
                 .vehicleType("트럭")
                 .build();
         predict.set_id("5fe045015c3a4865f72b7949");
-        logger.info("predict", predict.toString());
+        logger.info(answer.toString());
         assertThat(answer).isEqualTo(predict);
     }
 }
