@@ -6,7 +6,6 @@ plugins {
 
 group = 'com.aio'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '8'
 
 repositories {
 	mavenCentral()
@@ -20,6 +19,8 @@ dependencies {
 	implementation 'org.json:json:20201115'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly 'org.projectlombok:lombok'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	annotationProcessor('org.projectlombok:lombok')
 }
 

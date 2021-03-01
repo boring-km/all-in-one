@@ -1,46 +1,26 @@
 package com.aio.allinone.product;
 
-import com.aio.allinone.product.common.ProductInfo;
-import com.aio.allinone.product.common.RoomSize;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Setter;
+
+import java.util.Objects;
 
 @Getter
+@Setter
 public abstract class Product {
     private String _id;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(_id, product._id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(_id);
+    }
 }
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Builder
-@Document(collection = "HouseProduct")
-class HouseProduct extends Product {
-    private ProductInfo productInfo;
-    private RoomSize houseSize;
-}
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Builder
-@Document(collection = "StoreProduct")
-class StoreProduct extends Product {
-    private ProductInfo productInfo;
-    private RoomSize storeSize;
-}
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Builder
-@Document(collection = "VehicleProduct")
-class VehicleProduct extends Product {
-    private ProductInfo productInfo;
-    private String number;
-    private String vehicleType;
-
-}
