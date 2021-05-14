@@ -44,7 +44,10 @@ public class MongoDAO implements ProductDAO {
         String is = query.getIs();
         Query mongoQuery = new Query(Criteria.where(where).is(is));
         Update update = new Update();
-
+        Map<String, Object> mapToUpdate = updateQuery.getUpdate();
+        for (String key : mapToUpdate.keySet()) {
+            update.set(key, mapToUpdate.get(key));
+        }
         return mongoTemplate.updateMulti(mongoQuery, update, collectionName);
     }
 
